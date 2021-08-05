@@ -12,6 +12,8 @@ defmodule RumblWeb.UserController do
 
   @doc "Get a user by its id."
   @spec show(Plug.Conn.t(), map()) :: Plug.Conn.t()
-  def show(conn, params) do
+  def show(conn, %{"id" => id}) do
+    user = Accounts.get_user(id)
+    render(conn, "show.html", user: user)
   end
 end
